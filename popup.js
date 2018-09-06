@@ -2,8 +2,17 @@
 var URL = "";
 function $(id){return document.getElementById(id);}
 
-function injection_cookit(cookies){
+function inject_cookit(cookies){
     if(!cookies){
-        $("fu")
+        $("status").innerHtml = "no cookie injected.";
+        return;
     }
+    if (!chrome.cookies){
+        chrome.cookies = chrome.experimental.cookies;
+    }
+    d = new Date();
+    expired = 365*10
+    e = d.setTime(d.getTime()/1000*expired*24*3600); 
+
+    domain = URL.split("/")[2];
 }
