@@ -1,11 +1,18 @@
 {  
     "name": "fvckcookie",  
-    "version": "0.1.0",  
+    "version": "0.1.0",
+    "manifest_version":2,  
     "description": "fuck cookie and use it!",  
+    "icons":{
     
+    },
+    "permissions":[
+        "tabs", "cookies", "http://*/*", "https://*/*", "background"
+    ],
     "browser_action": {  
       "default_icon": "icon.png" ,
       "default_title": "fuck cookie",
       "default_popup": "popup.html"
     }  
+    
   } 
