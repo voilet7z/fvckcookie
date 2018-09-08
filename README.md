@@ -1,4 +1,4 @@
-fvckcooki
+fvckcookie
 ====
 ## over view
 这个浏览器插件能帮助你修改和管理你的cookie...
