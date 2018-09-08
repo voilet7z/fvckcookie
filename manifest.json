@@ -4,14 +4,14 @@
     "manifest_version":2,  
     "description": "fuck cookie and use it!",  
     "icons":{
-      "48": "icon48.jpg",
-	    "128": "icon128.jpg"
+      "48": "icon48.png",
+	    "128": "icon128.png"
     },
     "permissions":[
         "tabs", "cookies", "http://*/*", "https://*/*", "background"
     ],
     "browser_action": {  
-      "default_icon": "icon.jpg" ,
+      "default_icon": "icon.png" ,
       "default_title": "fuck cookie",
       "default_popup": "popup.html"
     }  

@@ -42,8 +42,8 @@ function init(){
     $('area').focus();
     $('area').value = localStorage.getItem('cookies');
 
-    chrome.tabs.query({active: true, currentWindow: true}, function(tab){
-        URL = tab.url;
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        URL = tabs.url;
         $('domain').value = URL.split("/")[2];
     });
 
@@ -51,7 +51,7 @@ function init(){
         localStorage.getItem('cookies', $('area').value);
     });
 
-    $('button').addEventListener("click", function(){
+    $('fvck').addEventListener("click", function(){
         inject_cookit($('area').value);
     });
 }
