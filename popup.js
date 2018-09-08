@@ -4,7 +4,7 @@ function $(id){return document.getElementById(id);}
 
 function inject_cookit(cookies){
     if(!cookies){
-        $("status").innerHtml = "no cookie injected.";
+        $("status").innerHTML = "no cookie injected.";
         return;
     }
     if (!chrome.cookies){
@@ -12,11 +12,11 @@ function inject_cookit(cookies){
     }
     d = new Date();
     expired = 365*10;
-    e = d.setTime(d.getTime()/1000*expired*24*3600); 
+    e = d.setTime(d.getTime()/1000+expired*24*3600); 
 
     domain = URL.split("/")[2];
     if($('domain').value != domain){
-        domain = $('domain').vlaue;
+        domain = $('domain').value;
     }
     url = URL.split("/")[0] + "//" + domain;
 
@@ -42,10 +42,10 @@ function init(){
     $('area').focus();
     $('area').value = localStorage.getItem('cookies');
 
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-        URL = tabs.url;
+chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        URL = tabs[0].url;
         $('domain').value = URL.split("/")[2];
-    });
+});
 
     $('area').addEventListener("blur", function(){
         localStorage.getItem('cookies', $('area').value);
