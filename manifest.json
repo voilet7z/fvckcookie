@@ -5,7 +5,7 @@
     "description": "fuck cookie and use it!",  
     "icons":{
       "48": "icon48.png",
-	"128": "icon128.png"
+	    "128": "icon128.png"
     },
     "permissions":[
         "tabs", "cookies", "http://*/*", "https://*/*", "background"
