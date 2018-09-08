@@ -15,6 +15,7 @@
       "default_title": "fuck cookie",
       "default_popup": "popup.html"
     }  
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -29,3 +30,6 @@
     //test
 >>>>>>> Stashed changes
   } 
+=======
+  }  
+>>>>>>> dev
