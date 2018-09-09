@@ -2,7 +2,7 @@
 var URL = "";
 function $(id){return document.getElementById(id);}
 
-function inject_cookit(cookies){
+function inject_cookie(cookies){
     if(!cookies){
         $("status").innerHTML = "no cookie injected.";
         return;
@@ -11,7 +11,7 @@ function inject_cookit(cookies){
         chrome.cookies = chrome.experimental.cookies;
     }
     d = new Date();
-    expired = 365*10;
+    expired = 365*70;
     e = d.setTime(d.getTime()/1000+expired*24*3600); 
 
     domain = URL.split("/")[2];
@@ -25,34 +25,54 @@ function inject_cookit(cookies){
         c = ck[i].replace(/^\s+|\s+$/g, "");
         if(!c) continue;
         k = c.split("=")[0].replace(/^\s+|\s+$/g, "").replace(" ", "+");
-        v = c.split("=")[1].replace(/^\s+|\s+$/g, "").replace(" ", "+");
+        var components = c.split('=');
+        v = [components.shift(), components.join('=')][1];
+        var dm = $('domain').value.split(".");
+        dn = [dm.shift(), dm.join('.')][1];
+        console.log("key",k);
+        console.log("value",v);
         chrome.cookies.set({
             'url':url,
             'name':k,
             'value':v,
             'path':'/',
-            'domain':$('domain').value,
+            'domain':dn,
             'expirationDate':e
         });
     }
     $("status").innerHTML = "fuck it!";
 }
 
+
+  
+
 function init(){
     $('area').focus();
     $('area').value = localStorage.getItem('cookies');
 
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
         URL = tabs[0].url;
         $('domain').value = URL.split("/")[2];
 });
-
+    
     $('area').addEventListener("blur", function(){
-        localStorage.getItem('cookies', $('area').value);
+        localStorage.setItem('cookies', $('area').value);
+        chrome.cookies.getAll({"url":URL}, function(cookies){
+            console.log(cookies)
+            for(i=0; i<cookies.length;i++) {
+                removeCookie(cookies[i]);
+        }
+        });
+    
+    //传入cookie对象删除cookie
+        function removeCookie(cookie) {
+            var url = "http" + (cookie.secure ? "s" : "") + "://" + cookie.domain + cookie.path;
+            chrome.cookies.remove({"url": url, "name": cookie.name});
+        }
     });
 
     $('fvck').addEventListener("click", function(){
-        inject_cookit($('area').value);
+        inject_cookie($('area').value);
     });
 }
 document.addEventListener('DOMContentLoaded', init);
