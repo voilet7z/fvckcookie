@@ -28,7 +28,11 @@ function inject_cookie(cookies){
         var components = c.split('=');
         v = [components.shift(), components.join('=')][1];
         var dm = $('domain').value.split(".");
+        if (dm.length >2){
         dn = [dm.shift(), dm.join('.')][1];
+        } else {
+            dn = $('domain').value
+        }
         console.log("key",k);
         console.log("value",v);
         chrome.cookies.set({
