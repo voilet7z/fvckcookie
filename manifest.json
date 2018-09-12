@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "manifest_version":2,  
     "description": "fuck cookie and use it!",  
-
+    "incognito":"split",
     "permissions":[
       "tabs", "cookies", "http://*/*", "https://*/*", "background"
   ],
@@ -15,5 +15,5 @@
       "default_icon": "icon.png" ,
       "default_title": "fuck cookie",
       "default_popup": "popup.html"
-    }  
+    } 
   } 
